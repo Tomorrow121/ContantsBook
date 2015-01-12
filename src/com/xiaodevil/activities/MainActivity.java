@@ -10,55 +10,64 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.Contacts.People;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
 import com.xiaodevil.contantsbook.R;
+import com.xiaodevil.models.User;
 
 public class MainActivity extends Activity {
 	private ListView contactsListView;
 	
 	private Intent intent = new Intent();
+	private User selectedUser = new User();
 	
+	public final static String SER_KEY = "com.xiaode.user";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        contactsListView = (ListView) findViewById(R.id.list1);
-        Cursor cursor = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
-        startManagingCursor(cursor);
-        
-        ListAdapter listAdapter = new SimpleCursorAdapter(this, 
-        		android.R.layout.simple_expandable_list_item_1, 
-        		cursor, 
-        		new String[]{People.NAME}, 
-        		new int[]{});
+        setupViews();
+//        Cursor cursor = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
+//        startManagingCursor(cursor);
+//        
+//        ListAdapter listAdapter = new SimpleCursorAdapter(this, 
+//        		android.R.layout.simple_expandable_list_item_1, 
+//        		cursor, 
+//        		new String[]{People.NAME}, 
+//        		new int[]{});
         
         ArrayAdapter<String> listAdapter2 = new ArrayAdapter<String>(this, 
         		android.R.layout.simple_expandable_list_item_1,
         		getData());
         
         contactsListView.setAdapter(listAdapter2);
-        
-        contactsListView.setOnClickListener(new OnClickListener() {
-			
+      
+        contactsListView.setOnItemClickListener(new OnItemClickListener()
+		{
+
 			@Override
-			public void onClick(View arg0) {
-				
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Bundle mBundle = new Bundle();
+				mBundle.putSerializable(SER_KEY, selectedUser);
+				intent.putExtras(mBundle);
 				intent.putExtra("name", "xiaode");
+				
 				intent.setClass(MainActivity.this, UserInfoActivity.class);
 				startActivity(intent);
-				
 			}
 		});
+    
         
+    }
+    
+    public void setupViews(){
+    	contactsListView = (ListView) findViewById(R.id.list1);
     }
 
     private List<String> getData(){
