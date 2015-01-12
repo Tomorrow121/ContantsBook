@@ -61,9 +61,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase arg0, ConnectionSource arg1, int arg2,
-			int arg3) {
-		// TODO Auto-generated method stub
+	public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVersion,
+			int newVersion) {
+		try{
+			TableUtils.dropTable(connectionSource, User.class, true);
+		}catch(SQLException e){
+			Log.e(TAG, e.toString());
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -83,16 +88,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return userDao;
 	}
 
-	public RuntimeExceptionDao<User, Integer> getUserRuntimeDao() {
+	public RuntimeExceptionDao<User, Integer> getUserDataDao() {
 		if(userRuntimeDao == null){
 			userRuntimeDao = getRuntimeExceptionDao(User.class);
 		}
 		return userRuntimeDao;
 	}
 
-	public void setUserRuntimeDao(RuntimeExceptionDao<User, Integer> userRuntimeDao) {
-		this.userRuntimeDao = userRuntimeDao;
-	}
+
 	
 	@Override
 	public void close(){
