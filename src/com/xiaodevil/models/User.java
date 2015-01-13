@@ -5,15 +5,22 @@
  */
 package com.xiaodevil.models;
 
-import com.j256.ormlite.field.DatabaseField;
+import java.io.Serializable;
+
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "user")
-public class User {
+public class User implements Serializable {
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
+	private static final long serialVersionUID = -2894121008151688346L;
+	private int id;
+	private String userName;
+	private String phoneNumber;
+	private String nickname;
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,15 +64,8 @@ public class User {
 		return true;
 	}
 
-	@DatabaseField(generatedId = true)
-	private int id;
-	
-	@DatabaseField(canBeNull = false)
-	private String userName;
-	
-	@DatabaseField(canBeNull = false)
-	private String phoneNumber;
-	
+
+
 	/**
 	 * @return the phoneNumber
 	 */
@@ -80,8 +80,7 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	@DatabaseField(canBeNull = true)
-	private String nickname;
+
 
 	
 	public User()
