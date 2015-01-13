@@ -7,9 +7,6 @@ package com.xiaodevil.models;
 
 import java.io.Serializable;
 
-import com.j256.ormlite.table.DatabaseTable;
-
-@DatabaseTable(tableName = "user")
 public class User implements Serializable {
 	
 	/* (non-Javadoc)
@@ -20,7 +17,7 @@ public class User implements Serializable {
 	private String userName;
 	private String phoneNumber;
 	private String nickname;
-	
+	private String sortKey;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -32,6 +29,14 @@ public class User implements Serializable {
 		result = prime * result
 				+ ((userName == null) ? 0 : userName.hashCode());
 		return result;
+	}
+
+	public String getSortKey() {
+		return sortKey;
+	}
+
+	public void setSortKey(String sortKey) {
+		this.sortKey = sortKey;
 	}
 
 	/* (non-Javadoc)

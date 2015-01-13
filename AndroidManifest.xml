@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.xiaodevil.activities.MainActivity"
+            android:name="com.xiaodevil.views.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,13 +25,13 @@
         </activity>
         
         <activity
-        	android:name="com.xiaodevil.activities.UserInfoActivity" 
+        	android:name="com.xiaodevil.views.UserInfoActivity" 
         	android:label="@string/app_name">
         </activity>
         
-        <!-- database activity -->
+        
         <activity
-            android:name="com.xiaodevil.activities.WriteDataActivity"
+            android:name="com.xiaodevil.views.AddNewContactsActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 
