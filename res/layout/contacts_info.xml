@@ -9,8 +9,7 @@
     android:id="@+id/name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:text="我是" />
+    android:layout_gravity="center"/>
 
 <ImageView
     android:id="@+id/avatar"
@@ -37,8 +36,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="dia"
-
-        />
+    />
     
 </LinearLayout>
+<Button
+    android:id="@+id/delete"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:text="delete"
+    />
 </LinearLayout>
